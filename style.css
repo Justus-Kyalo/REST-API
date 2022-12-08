@@ -1,0 +1,11 @@
+#form{
+    display: flex;
+    width: 30%;
+    padding-bottom: 40px;
+    padding-left: 200px;
+}
+#card{
+    display: flex;
+    padding-left: 40px;
+    
+}
