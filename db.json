@@ -1,11 +1,20 @@
 {
     "players":[
         {
-            "name":"messi",
+            "name":"Messi",
             "club":"PSG",
             "face":"https://images2.minutemediacdn.com/image/fetch/w_850,h_560,c_fill,g_auto,f_auto/https%3A%2F%2Ftherealchamps.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2017%2F07%2F1238387741-850x560.jpeg"
 
+        },
+        {    
+            
+            "name":"Ronaldo",
+            "club":"Al-Nasr",
+            "face":"https://phantom-marca.unidadeditorial.es/19c28439011a800605d50e13289c0fa4/resize/1320/f/jpg/assets/multimedia/imagenes/2022/12/05/16702399461500.jpg"
+
+
         }
+
        
     ]
 }
