@@ -1,13 +1,17 @@
 //renderAllPlayers
-document.addEventListener("DOMContentLoaded", () => fetchPlayers());
+document.addEventListener("DOMContentLoaded", () => {
+  fetchPlayers();
+  document.getElementById('get').addEventListener("click", handleGetQuery);
+});
 
 function fetchPlayers() {
   fetch("http://localhost:3000/players")
     .then((response) => response.json())
-    
+
     .then((data) => {
       console.log(data);
-      renderPlayers(data)});
+      renderPlayers(data);
+    });
 }
 
 function renderPlayers(players) {
@@ -55,26 +59,48 @@ function renderPlayers(players) {
     card.appendChild(anchor);
   });
 }
-//renderPlayer searched
 
+function handleGetQuery(event) {
+  event.preventDefault();
+  const searchInput = document.getElementById("playerName");
+  console.log(searchInput);
+  const query = searchInput.target.value;
+  fetch(`http://localhost:3000/players`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
 
-
+    .then((players) => {
+      console.log("Searching player by name");
+      if (players.length > 0) {
+        const found = players.filter(player => player.name === query);
+        // if(found) {
+        //   renderPlayers(found);
+        // } else {
+        //   renderPlayers([])
+        // }
+        renderPlayers(found ? found : []);
+      }
+    });
+} /*
 //POST
+const form = document.getElementById("playerForm");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
 
-// const form = document.getElementById("playerForm");
-// form.addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   const formData = new formData(form);
-//   // console.log(formData.get('name'))
-//   const data = Object.fromEntries(formData);
-// });
-
-// fetch("http://localhost:3000/players", {
-//   method: "POST",
-//   headers: {
-//     "Content-type": "apllication/json",
-//   },
-//   body: JSON.stringify(data),
-// })
-//   .then((res) => res.json())
-//   .then((data) => console.log(data));
+  fetch("http://localhost:3000/players", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+});*/
